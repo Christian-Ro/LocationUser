@@ -5,6 +5,7 @@ import com.locationproject.Service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
@@ -14,7 +15,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/addUser")
-    public User addUser(@RequestBody User user){
+    public User addUser(@RequestBody User user) throws URISyntaxException {
         return userService.saveUser(user);
     }
 
