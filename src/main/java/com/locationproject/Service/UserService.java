@@ -30,7 +30,11 @@ public class UserService {
     }
 
     public User getUserById(int id){
-        return userDAO.getOne(id);
+        return userDAO.findById(id).get();
     }
-    //TODO implement delete user by id
+
+    public String deleteUserById(int id){
+        userDAO.deleteById(id);
+        return "User deleted!";
+    }
 }
