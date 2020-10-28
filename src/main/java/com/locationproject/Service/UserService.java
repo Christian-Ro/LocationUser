@@ -37,4 +37,9 @@ public class UserService {
         userDAO.deleteById(id);
         return "User deleted!";
     }
+
+    //TODO check returning of more than one user
+    public User getUserByName(String name){
+        return userDAO.findByUserName(name);
+    }
 }
