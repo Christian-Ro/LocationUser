@@ -28,7 +28,7 @@ public class GetLocation {
         //TODO make object out of the result location response
         //For now, just get the location
 
-        System.out.println("Result: "+ result.getHeaders().containsValue("zip"));
+        System.out.println("Result: "+ result.getHeaders().toString());
 
 
         return location;
