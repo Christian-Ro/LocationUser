@@ -1,6 +1,8 @@
 package com.locationproject.Service;
 
+import com.locationproject.Model.Location;
 import com.locationproject.Model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import java.util.Collections;
 @Service
 public class GetLocation {
 
+    @Autowired
     public GetLocation(){
 
     }
@@ -33,13 +36,13 @@ public class GetLocation {
                 .defaultUriVariables(Collections.singletonMap("url", baseUrl2))
                 .build();
 
-        String locations = webClient.get().retrieve().bodyToMono(String.class).block();
+        Location locations = webClient.get().retrieve().bodyToMono(Location.class).block();
         //TODO make object out of the result location response
         //For now, just get the location
 
-        System.out.println("Result: "+ locations);
+        System.out.println("Result: "+ locations.getCity());
 
 
-        return location;
+        return locations.getCity();
     }
 }
