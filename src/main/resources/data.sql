@@ -1,6 +1,6 @@
 
 
-create table if not exists USER
+create table if not exists USERINFO
 (
     userID INTEGER NOT NULL,
     userName VARCHAR(25),
