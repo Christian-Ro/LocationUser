@@ -16,7 +16,9 @@ public class UserService {
     private GetLocation getLocation;
 
     public User saveUser(User user) {
+
         user.setLocation(getLocation.getLocationData());
+
         return userDAO.save(user);
     }
 
