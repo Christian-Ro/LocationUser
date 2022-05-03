@@ -62,7 +62,7 @@ public class UserRepositoryTest implements UserRepository {
 
     @Override
     public <S extends User> S save(S entity) {
-        return null;
+        return entity;
     }
 
     @Override

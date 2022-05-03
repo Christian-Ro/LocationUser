@@ -10,11 +10,14 @@ import java.util.List;
 @Service
 public class UserService {
 
-    @Autowired
     private UserRepository userRepository;
     @Autowired
     private GetLocation getLocation;
 
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
     public User saveUser(User user) {
 
         user.setLocation(getLocation.getLocationData());
