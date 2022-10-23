@@ -1,5 +1,6 @@
 package com.locationproject.Configuration;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -13,7 +14,8 @@ public class WebConfiguration {
 
     private final String baseUrl = "http://ip-api.com/json/";
 
-    @Bean("locationWebClient")
+    @Bean
+    @Qualifier("locationWebClient")
     public WebClient webClient(WebClient.Builder webClientBuilder) {
 
         return WebClient.builder()

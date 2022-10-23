@@ -11,18 +11,21 @@ import java.util.List;
 public class UserService {
 
     private UserRepository userRepository;
-    @Autowired
-    private GetLocation getLocation;
+    private LocationService locationService;
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository, LocationService locationService) {
         this.userRepository = userRepository;
+        this.locationService = locationService;
     }
     public User saveUser(User user) {
 
-        user.setLocation(getLocation.getLocationData());
+        String city = locationService.getCityLocation();
 
-        return userRepository.save(user);
+        user.setLocation(city);
+        User savedUser = userRepository.save(user);
+
+        return savedUser;
     }
 
     public List<User> saveUsers(List<User> users){

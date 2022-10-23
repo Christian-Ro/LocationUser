@@ -9,7 +9,13 @@ import org.springframework.data.domain.Sort;
 import java.util.List;
 import java.util.Optional;
 
-public class UserRepositoryTest implements UserRepository {
+public class MockUserRepository implements UserRepository {
+
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
     @Override
     public User findByUserName(String name) {
         return null;
@@ -62,6 +68,7 @@ public class UserRepositoryTest implements UserRepository {
 
     @Override
     public <S extends User> S save(S entity) {
+        user = entity;
         return entity;
     }
 
