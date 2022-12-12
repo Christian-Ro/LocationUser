@@ -2,6 +2,7 @@ package com.locationproject.Service;
 
 import com.locationproject.Repository.UserRepository;
 import com.locationproject.Model.User;
+import com.locationproject.Util.UserTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,19 +12,18 @@ import java.util.List;
 public class UserService {
 
     private UserRepository userRepository;
-    private LocationService locationService;
+    private UserTransformer userTransformer;
 
     @Autowired
-    public UserService(UserRepository userRepository, LocationService locationService) {
+    public UserService(UserRepository userRepository, UserTransformer userTransformer) {
         this.userRepository = userRepository;
-        this.locationService = locationService;
+        this.userTransformer = userTransformer;
     }
     public User saveUser(User user) {
 
-        String city = locationService.getCityLocation();
+        User transformUser = userTransformer.transformUser(user);
 
-        user.setLocation(city);
-        User savedUser = userRepository.save(user);
+        User savedUser = userRepository.save(transformUser);
 
         return savedUser;
     }

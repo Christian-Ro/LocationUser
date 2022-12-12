@@ -1,12 +1,10 @@
 package com.locationproject.Service;
 
 import com.locationproject.Model.User;
-import com.locationproject.Repository.LocationRepository;
-import com.locationproject.Repository.MockUserRepository;
 import com.locationproject.Repository.UserRepository;
+import com.locationproject.Util.UserTransformer;
 import okhttp3.mockwebserver.MockWebServer;
 import org.junit.jupiter.api.*;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -19,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class UserServiceTest {
 
     private UserService testService;
-    private LocationService locationService;
+    private UserTransformer userTransformer;
     @Autowired
     private UserRepository userRepository;
     @Autowired
@@ -31,8 +29,7 @@ public class UserServiceTest {
 
     @BeforeEach
     public void setup() {
-        locationService = new LocationService(mockLocationWebClient);
-        testService = new UserService(userRepository, locationService);
+        testService = new UserService(userRepository, userTransformer);
     }
 
     @Test
